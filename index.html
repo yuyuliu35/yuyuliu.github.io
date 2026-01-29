@@ -12,7 +12,6 @@
   <meta property="og:description" content="Meta Monetization GenAI TL; ex-LinkedIn Ads AI, ex-Verkada CV. Focus: agentic framework, memory, planning, tool calling, evaluation loops." />
   <meta property="og:type" content="website" />
 
-  <!-- Minimal, clean styling (no frameworks needed) -->
   <style>
     :root{
       --bg: #0b0f14;
@@ -61,6 +60,8 @@
       display:flex;
       flex-direction:column;
       gap: 10px;
+      flex: 1 1 auto;
+      min-width: 260px;
     }
     .name{
       font-size: 40px;
@@ -71,7 +72,7 @@
     .title{
       margin:0;
       color: var(--muted);
-      max-width: 66ch;
+      max-width: 80ch;
       font-size: 16px;
     }
     .badge-row{
@@ -92,7 +93,7 @@
     }
     .actions{
       display:flex;
-      gap: 10px;
+      gap: 14px;
       flex-wrap: wrap;
       justify-content:flex-end;
       align-items:center;
@@ -225,16 +226,29 @@
       background: linear-gradient(180deg, var(--accent), var(--accent2));
       box-shadow: 0 0 0 4px rgba(125,211,252,0.10);
     }
+    .avatar{
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      background: rgba(255,255,255,0.06);
+    }
+    .action-col{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items:flex-start;
+    }
   </style>
 
-  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Rain Liu",
     "jobTitle":"Large-scale ML & GenAI Systems Architect",
-    "url":"",
     "sameAs":[
       "https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en",
       "https://www.linkedin.com/in/rain-liu"
@@ -264,12 +278,16 @@
         </div>
       </div>
 
+      <!-- Avatar + buttons -->
       <div class="actions">
-        <a class="btn primary" href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
-        <a class="btn" href="https://www.linkedin.com/in/rain-liu" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-        <a class="btn" href="mailto:rainliuai@gmail.com">Email</a>
-        <!-- Optional: if you host your resume PDF in the same folder, rename it to resume.pdf and enable this -->
-        <!-- <a class="btn" href="./resume.pdf" target="_blank" rel="noreferrer">Resume PDF</a> -->
+        <img class="avatar" src="./photo.jpg" alt="Rain Liu" />
+        <div class="action-col">
+          <a class="btn primary" href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
+          <a class="btn" href="https://www.linkedin.com/in/rain-liu" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a class="btn" href="mailto:rainliuai@gmail.com">Email</a>
+          <!-- Optional: host a resume.pdf in the same folder -->
+          <!-- <a class="btn" href="./resume.pdf" target="_blank" rel="noreferrer">Resume PDF</a> -->
+        </div>
       </div>
     </header>
 
@@ -344,7 +362,6 @@
               </div>
               <ul class="bullets">
                 <li>Developed account propensity score model; drove <b>6×</b> opportunity creation, <b>5×</b> conversion, and multi-million annual impact.</li>
-                <li>Deployed ML-driven sales intelligence alerts; improved upsell outcomes and bookings impact.</li>
                 <li>Designed audience testing architecture with rigorous statistical validation; saved ~70% iteration time.</li>
               </ul>
             </div>
@@ -353,31 +370,36 @@
       </section>
 
       <aside class="card">
-        <h2>Publications</h2>
-        <p>Full list and citation metrics on Google Scholar.</p>
-        <p class="mono"><a href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">scholar.google.com/citations?user=ICbEgnQAAAAJ</a> ↗</p>
+        <h2>Education</h2>
+        <div class="list">
+          <div class="item">
+            <div class="top">
+              <p class="role">Ph.D. — Biostatistics & Statistics</p>
+              <span class="meta">2013 – 2018</span>
+            </div>
+            <p>University of California, Davis</p>
+          </div>
+
+          <div class="item">
+            <div class="top">
+              <p class="role">B.A. — Mathematics</p>
+              <span class="meta">2009 – 2013</span>
+            </div>
+            <p>Zhejiang University</p>
+          </div>
+        </div>
 
         <div class="sep"></div>
 
-        <div class="section">
-          <h3>Education</h3>
-          <div class="list">
-            <div class="item">
-              <div class="top">
-                <p class="role">Ph.D. — Biostatistics & Statistics</p>
-                <span class="meta">2013 – 2018</span>
-              </div>
-              <p>University of California, Davis</p>
-            </div>
-            <div class="item">
-              <div class="top">
-                <p class="role">B.A. — Mathematics</p>
-                <span class="meta">2009 – 2013</span>
-              </div>
-              <p>Zhejiang University</p>
-            </div>
-          </div>
-        </div>
+        <h2 style="margin-top:14px;">Publications</h2>
+        <p>Full list and citation metrics on Google Scholar.</p>
+        <p class="mono">
+          <a href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">
+            scholar.google.com/citations?user=ICbEgnQAAAAJ
+          </a> ↗
+        </p>
+
+        <div class="sep"></div>
 
         <div class="section">
           <h3>Focus</h3>
