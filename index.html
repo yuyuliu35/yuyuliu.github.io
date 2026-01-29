@@ -3,244 +3,192 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rain Liu — Large-scale ML & GenAI Systems</title>
-  <meta name="description" content="Rain Liu — Large-scale ML systems & GenAI architect. Meta Monetization GenAI TL; ex-LinkedIn Ads AI, ex-Verkada CV." />
+  <title>Rain Liu — Foundation Models & Large-scale ML</title>
+  <meta name="description" content="Rain Liu — Foundation models and large-scale ML systems. Meta Monetization GenAI TL; ex-LinkedIn Ads AI, ex-Verkada CV." />
   <meta name="theme-color" content="#0b0f14" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Rain Liu — Large-scale ML & GenAI Systems" />
-  <meta property="og:description" content="Meta Monetization GenAI TL; ex-LinkedIn Ads AI, ex-Verkada CV. Focus: agentic framework, memory, planning, tool calling, evaluation loops." />
-  <meta property="og:type" content="website" />
 
   <style>
     :root{
-      --bg: #0b0f14;
-      --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.04);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --faint: rgba(255,255,255,0.50);
-      --border: rgba(255,255,255,0.12);
-      --accent: #7dd3fc;
+      --bg:#0b0f14;
+      --panel:rgba(255,255,255,0.06);
+      --panel2:rgba(255,255,255,0.04);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.68);
+      --faint:rgba(255,255,255,0.50);
+      --border:rgba(255,255,255,0.12);
+      --accent:#7dd3fc;
       --accent2:#a78bfa;
-      --shadow: 0 20px 50px rgba(0,0,0,0.45);
-      --radius: 18px;
-      --max: 980px;
+      --shadow:0 20px 50px rgba(0,0,0,0.45);
+      --radius:18px;
+      --max:980px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: var(--sans);
+      font-family:var(--sans);
+      color:var(--text);
+      line-height:1.6;
       background:
         radial-gradient(1200px 500px at 10% 10%, rgba(125, 211, 252, 0.14), transparent 60%),
         radial-gradient(900px 450px at 85% 20%, rgba(167, 139, 250, 0.12), transparent 55%),
         radial-gradient(900px 500px at 50% 90%, rgba(34, 211, 238, 0.08), transparent 55%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.55;
     }
-    a{ color: var(--text); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
+    a{ color:var(--text); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
     .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 40px 18px 70px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:44px 18px 70px;
     }
-    header{
+    .card{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, var(--panel), var(--panel2));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .top{
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:space-between;
-      gap: 20px;
-      margin-bottom: 22px;
+      gap:18px;
+      flex-wrap:wrap;
     }
-    .brand{
+    .hero{
       display:flex;
-      flex-direction:column;
-      gap: 10px;
-      flex: 1 1 auto;
-      min-width: 260px;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
     }
-    .name{
-      font-size: 40px;
-      letter-spacing:-0.02em;
+    .avatar{
+      width:180px;
+      height:180px;
+      border-radius:999px;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:0 12px 28px rgba(0,0,0,0.25);
+      background:rgba(255,255,255,0.06);
+    }
+    h1{
       margin:0;
+      font-size:40px;
+      letter-spacing:-0.02em;
       line-height:1.1;
     }
-    .title{
-      margin:0;
-      color: var(--muted);
-      max-width: 80ch;
-      font-size: 16px;
+    .subtitle{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:15.5px;
+      max-width:75ch;
     }
-    .badge-row{
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      background:linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 4px rgba(125,211,252,0.10);
+    }
+    .badgeRow{
       display:flex;
       flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 12px;
+      gap:10px;
+      margin-top:12px;
     }
     .badge{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
-      white-space: nowrap;
-    }
-    .actions{
-      display:flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.06);
-      padding: 10px 12px;
-      font-size: 14px;
-      color: var(--text);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-    }
-    .btn:hover{
-      background: rgba(255,255,255,0.09);
-      text-decoration:none;
-    }
-    .btn.primary{
-      border-color: rgba(125,211,252,0.35);
-      background: linear-gradient(180deg, rgba(125,211,252,0.18), rgba(255,255,255,0.05));
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+      white-space:nowrap;
+      box-shadow:0 10px 22px rgba(0,0,0,0.18);
     }
     .grid{
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-      margin-top: 18px;
+      gap:14px;
+      margin-top:14px;
     }
     @media (max-width: 900px){
-      header{ flex-direction:column; align-items:flex-start; }
-      .actions{ justify-content:flex-start; }
+      h1{ font-size:34px; }
       .grid{ grid-template-columns:1fr; }
-      .name{ font-size: 34px; }
     }
-    .card{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+    h2{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:-0.01em;
     }
-    .card h2{
-      margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: -0.01em;
+    h3{
+      margin:16px 0 10px;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:0.02em;
+      color:rgba(255,255,255,0.86);
     }
-    .card p{
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 14.5px;
-    }
-    .card p:last-child{ margin-bottom:0; }
-    .section{
-      margin-top: 14px;
-    }
-    .section h3{
-      margin: 16px 0 10px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.86);
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
-    }
-    .list{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    p{ margin:0 0 10px; color:var(--muted); font-size:14.5px; }
+    p:last-child{ margin-bottom:0; }
     .item{
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 12px;
-      background: rgba(0,0,0,0.18);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(0,0,0,0.18);
+      margin-top:10px;
     }
-    .item .top{
+    .itemTop{
       display:flex;
       justify-content:space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: baseline;
-      margin-bottom: 6px;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin-bottom:6px;
     }
     .role{
       margin:0;
-      font-weight: 650;
-      font-size: 14.5px;
-      letter-spacing: -0.01em;
+      font-weight:650;
+      font-size:14.5px;
+      color:rgba(255,255,255,0.92);
+      letter-spacing:-0.01em;
     }
     .meta{
-      color: var(--faint);
-      font-size: 13px;
-      font-family: var(--mono);
+      font-family:var(--mono);
+      color:var(--faint);
+      font-size:13px;
     }
-    .bullets{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 14px;
+    ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:14px;
     }
-    .bullets li{ margin: 6px 0; }
-    footer{
-      margin-top: 18px;
-      color: var(--faint);
-      font-size: 13px;
-      display:flex;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
+    li{ margin:6px 0; }
     .sep{
       height:1px;
-      background: rgba(255,255,255,0.10);
-      margin: 14px 0 0;
+      background:rgba(255,255,255,0.10);
+      margin:14px 0;
     }
-    .mono{ font-family: var(--mono); }
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: linear-gradient(180deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 4px rgba(125,211,252,0.10);
-    }
-    .avatar{
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,0.20);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-      background: rgba(255,255,255,0.06);
-    }
-    .action-col{
+    footer{
+      margin-top:18px;
+      color:var(--faint);
+      font-size:13px;
       display:flex;
-      flex-direction:column;
-      gap: 10px;
-      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
     }
+    .mono{ font-family:var(--mono); }
   </style>
 
   <script type="application/ld+json">
@@ -248,10 +196,9 @@
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Rain Liu",
-    "jobTitle":"Large-scale ML & GenAI Systems Architect",
+    "jobTitle":"Foundation Models & Large-scale ML",
     "sameAs":[
-      "https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en",
-      "https://www.linkedin.com/in/rain-liu"
+      "https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en"
     ]
   }
   </script>
@@ -259,170 +206,124 @@
 
 <body>
   <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="kicker"><span class="dot"></span><span>Large-scale ML Systems • Agentic GenAI • Evaluation Loops</span></div>
-        <h1 class="name">Rain Liu</h1>
-        <p class="title">
-          My background is in <b>large-scale ML architecture</b>. I started at <b>LinkedIn</b> on Ads Core ML ranking, then worked at a computer vision startup (<b>Verkada</b>) on detection and low-light enhancement.
-          I joined <b>Meta</b> about three years ago, initially working on model architecture for Reels ranking. For the past two-plus years, I’ve been in <b>Monetization GenAI</b> as the TL for <b>Meta Assistant on Business Manager</b>,
-          owning the foundation workstream (agentic framework, memory, planner, tool calling), and driving model fine-tuning, response quality improvements, and language & surface expansion.
-          Through this work, I’ve spent a lot of time thinking about how <b>data quality, coverage, and evaluation loops</b> directly shape model behavior in production.
-        </p>
 
-        <div class="badge-row">
-          <span class="badge">Meta • Monetization GenAI TL</span>
-          <span class="badge">ex-LinkedIn • Ads AI TL</span>
-          <span class="badge">ex-Verkada • Computer Vision</span>
-          <span class="badge">PhD • Statistics & Biostatistics</span>
-        </div>
-      </div>
-
-      <!-- Avatar + buttons -->
-      <div class="actions">
+    <div class="card">
+      <div class="hero">
         <img class="avatar" src="./photo.jpg" alt="Rain Liu" />
-        <div class="action-col">
-          <a class="btn primary" href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
-          <a class="btn" href="https://www.linkedin.com/in/rain-liu" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          <a class="btn" href="mailto:rainliuai@gmail.com">Email</a>
-          <!-- Optional: host a resume.pdf in the same folder -->
-          <!-- <a class="btn" href="./resume.pdf" target="_blank" rel="noreferrer">Resume PDF</a> -->
+        <div>
+          <div class="kicker"><span class="dot"></span><span>Foundation Models • Large-scale ML Systems • Evaluation</span></div>
+          <h1>Rain Liu</h1>
+          <p class="subtitle">
+            I work on <b>foundation models</b> and <b>large-scale ML systems</b>, focusing on model architecture, training data, and evaluation loops that translate into reliable capability in production.
+            I’m currently looking for <b>foundation model roles</b> spanning pretraining, post-training, evaluation, and system-level design.
+          </p>
+
+          <div class="badgeRow">
+            <span class="badge">Meta • Monetization GenAI TL</span>
+            <span class="badge">ex-LinkedIn • Ads AI TL</span>
+            <span class="badge">ex-Verkada • Computer Vision</span>
+            <span class="badge">PhD • Statistics</span>
+          </div>
         </div>
       </div>
-    </header>
+    </div>
 
     <div class="grid">
+      <!-- Left: Experience -->
       <section class="card">
         <h2>Experience</h2>
-        <p>Selected highlights across production ML systems, ads ranking, computer vision, and GenAI foundations.</p>
+        <p>Selected highlights across GenAI foundations, large-scale ranking/ads, and computer vision.</p>
 
-        <div class="section">
-          <h3>Meta</h3>
-          <div class="list">
-            <div class="item">
-              <div class="top">
-                <p class="role">Tech Lead — Monetization GenAI (Meta Assistant on Business Manager)</p>
-                <span class="meta">2023 – Present</span>
-              </div>
-              <ul class="bullets">
-                <li>Own the foundation workstream: agentic framework, long-term memory, planning, and tool calling.</li>
-                <li>Drive model fine-tuning, response quality improvements, and multilingual / surface expansion.</li>
-                <li>Focus on closing the loop between data quality, coverage, evaluation, and online outcomes.</li>
-              </ul>
-            </div>
+        <h3>Meta</h3>
 
-            <div class="item">
-              <div class="top">
-                <p class="role">ML Engineer — Reels Ranking (Model Architecture)</p>
-                <span class="meta">~2022 – 2023</span>
-              </div>
-              <ul class="bullets">
-                <li>Worked on large-scale ranking model architecture for Reels recommendation systems.</li>
-              </ul>
-            </div>
+        <div class="item">
+          <div class="itemTop">
+            <p class="role">Tech Lead — Monetization GenAI (Meta Assistant on Business Manager)</p>
+            <span class="meta">2023 – Present</span>
           </div>
-        </div>
-
-        <div class="section">
-          <h3>Verkada</h3>
-          <div class="list">
-            <div class="item">
-              <div class="top">
-                <p class="role">Computer Vision Engineer</p>
-                <span class="meta">Sep 2022 – Dec 2022</span>
-              </div>
-              <ul class="bullets">
-                <li>Trained a lightweight deep network for low-light image enhancement; improved image quality and perceptual metrics.</li>
-                <li>Built end-to-end evaluation pipeline for person & vehicle hyperzoom detection; diagnosed low recall and improved performance.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h3>LinkedIn</h3>
-          <div class="list">
-            <div class="item">
-              <div class="top">
-                <p class="role">Tech Lead — LinkedIn Audience Network (Ads AI)</p>
-                <span class="meta">Jan 2019 – Aug 2022</span>
-              </div>
-              <ul class="bullets">
-                <li>Led a new deep learning modeling framework for CTR prediction; increased total revenue by <b>4.3%</b>.</li>
-                <li>Trained large-scale models (700M+ records) and enabled broader adoption across response prediction verticals.</li>
-                <li>Built privacy-aware cohort-based systems to adapt to platform and regulatory changes; improved efficiency by ~<b>4×</b>.</li>
-                <li>Mentored 5+ ML engineers & interns; drove multiple cross-functional launches.</li>
-              </ul>
-            </div>
-
-            <div class="item">
-              <div class="top">
-                <p class="role">Machine Learning Engineer — Talent Solutions</p>
-                <span class="meta">Earlier at LinkedIn</span>
-              </div>
-              <ul class="bullets">
-                <li>Developed account propensity score model; drove <b>6×</b> opportunity creation, <b>5×</b> conversion, and multi-million annual impact.</li>
-                <li>Designed audience testing architecture with rigorous statistical validation; saved ~70% iteration time.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <aside class="card">
-        <h2>Education</h2>
-        <div class="list">
-          <div class="item">
-            <div class="top">
-              <p class="role">Ph.D. — Biostatistics & Statistics</p>
-              <span class="meta">2013 – 2018</span>
-            </div>
-            <p>University of California, Davis</p>
-          </div>
-
-          <div class="item">
-            <div class="top">
-              <p class="role">B.A. — Mathematics</p>
-              <span class="meta">2009 – 2013</span>
-            </div>
-            <p>Zhejiang University</p>
-          </div>
-        </div>
-
-        <div class="sep"></div>
-
-        <h2 style="margin-top:14px;">Publications</h2>
-        <p>Full list and citation metrics on Google Scholar.</p>
-        <p class="mono">
-          <a href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">
-            scholar.google.com/citations?user=ICbEgnQAAAAJ
-          </a> ↗
-        </p>
-
-        <div class="sep"></div>
-
-        <div class="section">
-          <h3>Focus</h3>
-          <ul class="bullets">
-            <li>Large-scale ML architecture</li>
-            <li>Agentic systems & long-term memory</li>
-            <li>Evaluation-driven iteration</li>
-            <li>Ads ranking & recommendation</li>
-            <li>Computer vision in production</li>
+          <ul>
+            <li>Own the foundation workstream for advertiser-facing GenAI systems: agentic architecture, long-term memory, planning, and tool calling.</li>
+            <li>Drive post-training, response quality improvements, and multilingual / surface expansion in production.</li>
+            <li>Emphasize data coverage and evaluation loops to sustain capability improvements over time.</li>
           </ul>
         </div>
 
-        <div class="section">
-          <h3>Contact</h3>
-          <p><a href="mailto:rainliuai@gmail.com">rainliuai@gmail.com</a></p>
-          <p><a href="https://www.linkedin.com/in/rain-liu" target="_blank" rel="noreferrer">linkedin.com/in/rain-liu</a> ↗</p>
+        <div class="item">
+          <div class="itemTop">
+            <p class="role">ML Engineer — Reels Ranking (Model Architecture)</p>
+            <span class="meta">2022 – 2023</span>
+          </div>
+          <ul>
+            <li>Worked on large-scale ranking model architecture for Reels recommendation systems.</li>
+          </ul>
         </div>
+
+        <h3>Verkada</h3>
+        <div class="item">
+          <div class="itemTop">
+            <p class="role">Computer Vision Engineer</p>
+            <span class="meta">2022</span>
+          </div>
+          <ul>
+            <li>Trained a lightweight deep network for low-light image enhancement, improving perceptual image quality.</li>
+            <li>Built end-to-end evaluation pipeline for person & vehicle detection; diagnosed low recall and improved performance.</li>
+          </ul>
+        </div>
+
+        <h3>LinkedIn</h3>
+        <div class="item">
+          <div class="itemTop">
+            <p class="role">Tech Lead — Ads AI (LinkedIn Audience Network)</p>
+            <span class="meta">2019 – 2022</span>
+          </div>
+          <ul>
+            <li>Proposed and led a deep learning modeling framework for CTR prediction, increasing total revenue by <b>4.3%</b>.</li>
+            <li>Trained large-scale models (700M+ records) and enabled adoption across multiple response prediction verticals.</li>
+            <li>Built privacy-aware cohort-based systems to adapt to platform and regulatory changes, improving efficiency by ~<b>4×</b>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Right: Education / Publications / Contact -->
+      <aside class="card">
+        <h2>Education</h2>
+
+        <div class="item">
+          <div class="itemTop">
+            <p class="role">Ph.D. — Statistics</p>
+            <span class="meta">2013 – 2018</span>
+          </div>
+          <p>University of California, Davis</p>
+        </div>
+
+        <div class="item">
+          <div class="itemTop">
+            <p class="role">B.A. — Mathematics</p>
+            <span class="meta">2009 – 2013</span>
+          </div>
+          <p>Zhejiang University</p>
+        </div>
+
+        <div class="sep"></div>
+
+        <h2>Publications</h2>
+        <p>Full publication list and citation metrics:</p>
+        <p class="mono">
+          <a href="https://scholar.google.com/citations?user=ICbEgnQAAAAJ&hl=en" target="_blank" rel="noreferrer">
+            Google Scholar ↗
+          </a>
+        </p>
+
+        <div class="sep"></div>
+
+        <h2>Contact</h2>
+        <p><a href="mailto:rainliuai@gmail.com">rainliuai@gmail.com</a></p>
       </aside>
     </div>
 
     <footer>
       <span>© <span id="year"></span> Rain Liu</span>
-      <span class="mono">Built as a single-file static site.</span>
+      <span class="mono">Single-file static site.</span>
     </footer>
   </div>
 
