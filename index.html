@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rain Liu — Agentic Foundation Behaviors</title>
-  <meta name="description" content="Rain Liu — Tech Lead (Meta Monetization GenAI). Agentic foundation behaviors: tool invocation, memory, instruction following." />
+  <title>Rain Liu</title>
+  <meta name="description" content="Rain Liu — Tech Lead at Meta. Agentic GenAI, post-training, evaluation, and data-centric research." />
   <meta name="theme-color" content="#0b0f14" />
 
   <style>
@@ -16,25 +16,22 @@
       --muted:rgba(255,255,255,0.68);
       --faint:rgba(255,255,255,0.50);
       --border:rgba(255,255,255,0.12);
-      --accent:#7dd3fc;
-      --accent2:#a78bfa;
       --shadow:0 20px 50px rgba(0,0,0,0.45);
       --radius:18px;
       --max:980px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
     body{
       margin:0;
       font-family:var(--sans);
       color:var(--text);
       line-height:1.6;
       background:
-        radial-gradient(1200px 500px at 10% 10%, rgba(125, 211, 252, 0.14), transparent 60%),
-        radial-gradient(900px 450px at 85% 20%, rgba(167, 139, 250, 0.12), transparent 55%),
-        radial-gradient(900px 500px at 50% 90%, rgba(34, 211, 238, 0.08), transparent 55%),
+        radial-gradient(1200px 500px at 10% 10%, rgba(125,211,252,0.14), transparent 60%),
+        radial-gradient(900px 450px at 85% 20%, rgba(167,139,250,0.12), transparent 55%),
+        radial-gradient(900px 500px at 50% 90%, rgba(34,211,238,0.08), transparent 55%),
         var(--bg);
     }
     a{ color:var(--text); text-decoration:none; }
@@ -45,7 +42,6 @@
       margin:0 auto;
       padding:44px 18px 70px;
     }
-
     .card{
       border:1px solid var(--border);
       background:linear-gradient(180deg, var(--panel), var(--panel2));
@@ -57,21 +53,6 @@
 
     header.card{
       position:relative;
-      overflow:hidden;
-    }
-
-    .kicker{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:10px;
-    }
-    .dot{
-      width:8px;height:8px;border-radius:999px;
-      background:linear-gradient(180deg, var(--accent), var(--accent2));
-      box-shadow:0 0 0 4px rgba(125,211,252,0.10);
     }
 
     h1{
@@ -82,27 +63,10 @@
     }
 
     .subtitle{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:15.5px;
-      max-width:78ch;
-    }
-
-    .badgeRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
       margin-top:12px;
-    }
-    .badge{
-      border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:13px;
       color:var(--muted);
-      white-space:nowrap;
-      box-shadow:0 10px 22px rgba(0,0,0,0.18);
+      font-size:16px;
+      max-width:78ch;
     }
 
     .avatar{
@@ -118,24 +82,23 @@
       background:rgba(255,255,255,0.06);
     }
 
-    /* Give header text room so it doesn't hide under the avatar on narrow screens */
     .headerText{
-      padding-right: 210px;
+      padding-right:210px;
     }
-    @media (max-width: 720px){
-      .avatar{ position:static; width:150px; height:150px; margin-top:14px; }
-      .headerText{ padding-right: 0; }
+    @media (max-width:720px){
+      .avatar{ position:static; margin-top:14px; width:150px; height:150px; }
+      .headerText{ padding-right:0; }
     }
 
     .grid{
       display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns:1.2fr 0.8fr;
       gap:14px;
       margin-top:14px;
     }
-    @media (max-width: 900px){
-      h1{ font-size:34px; }
+    @media (max-width:900px){
       .grid{ grid-template-columns:1fr; }
+      h1{ font-size:34px; }
     }
 
     h2{
@@ -152,7 +115,8 @@
     }
 
     p{ margin:0 0 10px; color:var(--muted); font-size:14.5px; }
-    p:last-child{ margin-bottom:0; }
+    ul{ margin:0; padding-left:18px; color:var(--muted); font-size:14px; }
+    li{ margin:6px 0; }
 
     .item{
       border:1px solid var(--border);
@@ -174,21 +138,12 @@
       font-weight:650;
       font-size:14.5px;
       color:rgba(255,255,255,0.92);
-      letter-spacing:-0.01em;
     }
     .meta{
       font-family:var(--mono);
       color:var(--faint);
       font-size:13px;
     }
-
-    ul{
-      margin:0;
-      padding-left:18px;
-      color:var(--muted);
-      font-size:14px;
-    }
-    li{ margin:6px 0; }
 
     .sep{
       height:1px;
@@ -202,24 +157,10 @@
       font-size:13px;
       display:flex;
       justify-content:space-between;
-      gap:12px;
       flex-wrap:wrap;
-      align-items:center;
+      gap:12px;
     }
-    .mono{ font-family:var(--mono); }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Rain Liu",
-    "jobTitle":"Tech Lead, Monetization GenAI",
-    "sameAs":[
-      "https://scholar.google.com/citations?hl=en&view_op=list_works&user=BIduCGEAAAAJ"
-    ]
-  }
-  </script>
 </head>
 
 <body>
@@ -228,26 +169,19 @@
     <!-- Header -->
     <header class="card">
       <div class="headerText">
-        <div class="kicker"><span class="dot"></span><span>Agentic Foundation Behaviors • Post-training • Evaluation</span></div>
         <h1>Rain Liu</h1>
         <p class="subtitle">
-          Tech Lead at Meta (Monetization GenAI), working on agentic behaviors in large-scale GenAI systems.
+          <b>I care deeply about how intelligent systems actually behave.</b><br/>
+          I’m motivated by curiosity around how models learn from data, interact with the world,
+          and improve through careful measurement and iteration.
         </p>
-
-        <div class="badgeRow">
-          <span class="badge">Meta • Monetization GenAI TL</span>
-          <span class="badge">ex-LinkedIn • Ads AI TL</span>
-          <span class="badge">ex-Verkada • Computer Vision</span>
-          <span class="badge">PhD • Statistics</span>
-        </div>
       </div>
-
-      <!-- Put photo.jpg in the same folder as index.html -->
+      <!-- place photo.jpg in the same directory -->
       <img class="avatar" src="./photo.jpg" alt="Rain Liu" />
     </header>
 
     <div class="grid">
-      <!-- Left: Experience -->
+      <!-- Experience -->
       <section class="card">
         <h2>Experience</h2>
 
@@ -281,8 +215,8 @@
             <span class="meta">2022</span>
           </div>
           <ul>
-            <li>Trained lightweight deep networks for low-light image enhancement, improving perceptual image quality.</li>
-            <li>Built end-to-end evaluation pipelines for person and vehicle detection; diagnosed and addressed recall bottlenecks.</li>
+            <li>Trained lightweight deep networks for low-light image enhancement and improved perceptual image quality.</li>
+            <li>Built evaluation pipelines for person and vehicle detection and diagnosed recall bottlenecks.</li>
           </ul>
         </div>
 
@@ -300,10 +234,9 @@
         </div>
       </section>
 
-      <!-- Right: Education / Publications / Contact -->
+      <!-- Right column -->
       <aside class="card">
         <h2>Education</h2>
-
         <div class="item">
           <div class="itemTop">
             <p class="role">Ph.D. — Statistics</p>
@@ -311,7 +244,6 @@
           </div>
           <p>University of California, Davis</p>
         </div>
-
         <div class="item">
           <div class="itemTop">
             <p class="role">B.A. — Mathematics</p>
@@ -323,9 +255,8 @@
         <div class="sep"></div>
 
         <h2>Publications</h2>
-        <p>Full publication list and citation metrics:</p>
         <p class="mono">
-          <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&user=BIduCGEAAAAJ" target="_blank" rel="noreferrer">
+          <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&user=BIduCGEAAAAJ" target="_blank">
             Google Scholar ↗
           </a>
         </p>
